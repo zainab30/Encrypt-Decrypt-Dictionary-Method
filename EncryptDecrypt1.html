@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Encrypt Decrypt</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Inconsolata|Lobster');
+        @import url('https://fonts.googleapis.com/css?family=Lobster');
+
+
+        .show {
+            visibility : visible;
+            width : 444px;
+            height : 152px;
+            font-family : lobster;
+            box-shadow : 2px 2px 2px black;
+        }
+
+        .none {
+            visibility : hidden;
+        }
+
+        .position {
+            text-align : center;
+        }
+
+        #hide {
+            visibility : hidden;
+            border-radius : 10px;
+            background-color : aqua;
+            box-shadow : 2px 2px 2px black;
+            padding : 3px;
+            margin : 5px;
+        }
+
+        #hid {
+            visibility : hidden;
+            border-radius : 10px;
+            background-color : aqua;
+            box-shadow : 2px 2px 2px black;
+            padding : 3px;
+            margin : 5px;
+        }
+
+
+
+        .btn1 {
+            border-radius : 10px;
+            background-color : aqua;
+            box-shadow : 2px 2px 2px black;
+            padding : 3px;
+            margin : 5px;
+        }
+
+        .hidden {
+            display : none;
+        }
+
+
+        .e {
+            display : block;
+            margin : auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="position">
+        <button class="btn1 " id="btn1" onclick="enter();">Enter Message</button>
+    </div>
+    <div class="position">
+        <textarea class="none" id="none" placeholder="Enter Message To Encrypt"></textarea>
+    </div>
+    <div class="position">
+        <input type="submit" id="hide" value="Encrypt" onclick="encrypt();" />
+        <input type="submit" id="hid" value="Decrypt" onclick="decrypt();" />
+    </div>
+</body>
+<script>
+    var dictionary = {
+        " " : " ",
+        1 : 3,
+        2 : 4,
+        3 : 5,
+        4 : 6,
+        5 : 7,
+        6 : 8,
+        7 : 9,
+        8 : 0,
+        9 : 1,
+        0 : 2,
+        a : "c",
+        b : "d",
+        c : "e",
+        d : "f",
+        e : "g",
+        f : "h",
+        g : "i",
+        h : "j",
+        i : "k",
+        j : "l",
+        k : "m",
+        l : "n",
+        m : "o",
+        n : "p",
+        o : "q",
+        p : "r",
+        q : "s",
+        r : "t",
+        s : "u",
+        t : "v",
+        u : "w",
+        v : "x",
+        w : "y",
+        x : "z",
+        y : "a",
+        z : "b",
+    }
+
+    function enter() {
+        var hidden = document.getElementById('btn1').className += 'hidden';
+        var display = document.getElementById('none').className = 'show';
+        document.getElementById('hide').style.visibility = "visible";
+        document.getElementById('hid').style.visibility = "visible";
+
+    }
+
+
+
+    function encrypt() {
+        var msg = document.getElementById('none').value;
+        console.log(msg);
+        var msg1 = msg.toLowerCase();
+        console.log(msg1);
+        var val = msg1.split("");
+        console.log(val);
+        for (var i = 0; i < val.length; i++) {
+            for (var property in dictionary) {
+                if (val[i] == property) {
+                    val[i] = dictionary[property];
+                    break;
+                }
+            }
+        }
+        console.log(val);
+        var msg2 = val.join("");
+        document.getElementById('none').value = msg2;
+    }
+
+    function decrypt() {
+
+        var msg = document.getElementById('none').value;
+        console.log(msg);
+        var msg1 = msg.toLowerCase();
+        console.log(msg1);
+        var val = msg1.split("");
+        console.log(val);
+        for (var i = 0; i < val.length; i++) {
+            for (var values in dictionary) {
+                if(val[i] === " " ) {
+                   val[i] = " "; 
+                }
+                else if (val[i] == dictionary[values]) {
+                    val[i] = values;
+                    break;
+                }
+            }
+        }
+        console.log(val);
+        var msg2 = val.join("");
+        document.getElementById('none').value = msg2;
+    }
+
+
+
+
+</script>
+
+</html>
